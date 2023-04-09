@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -26,5 +27,11 @@
         <PackageReference Include="IdentityServer4" Version="4.1.2"/>
         <PackageReference Include="Postmark" Version="4.7.5"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Controllers"/>
+        <Folder Include="Processors"/>
+        <Folder Include="Services"/>
     </ItemGroup>
 </Project>

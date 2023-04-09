@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Purple.Db;
 
 namespace Purple
 {
@@ -26,6 +28,19 @@ namespace Purple
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            var connectionString = Configuration.GetConnectionString("MySqlConnectionString");
+            var mySqlVersion = new MySqlServerVersion(Configuration.GetConnectionString("MySqlVersion"));
+            services.AddDbContextPool<PurpleDbContext>(builder => builder.UseMySql(
+                    connectionString,
+                    mySqlVersion,
+                    mySqlBuilder =>
+                    {
+                        mySqlBuilder.EnableRetryOnFailure();
+                    })
+                .EnableSensitiveDataLogging()
+                .EnableDetailedErrors()
+            );
             
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist/spa"; });
         }
