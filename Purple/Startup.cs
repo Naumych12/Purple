@@ -26,6 +26,8 @@ namespace Purple
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            
+            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist/spa"; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,14 +39,29 @@ namespace Purple
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
 
             app.UseRouting();
+
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name:"default",
+                    pattern:"{controller}/{action=Index}/{id?}");
+            });
+            
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "ClientApp";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");
+                }
             });
         }
     }
