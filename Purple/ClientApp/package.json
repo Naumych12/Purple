@@ -1,8 +1,8 @@
 {
-  "name": "clientapp",
+  "name": "purple",
   "version": "0.0.1",
-  "description": "A Quasar Project",
-  "productName": "ClientApp",
+  "description": "The Purple",
+  "productName": "Purple",
   "author": "Naumych12 <andrusha.naumenko.12@gmail.com>",
   "private": true,
   "scripts": {
