@@ -2,9 +2,16 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <LangVersion>10</LangVersion>
+        <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+        <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+        <IsPackable>false</IsPackable>
+        <SpaRoot>ClientApp\</SpaRoot>
+        <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+        <AssemblyName>Tw.Vue.WebApp</AssemblyName>
+        <RootNamespace>Tw.Vue.WebApp</RootNamespace>
+        <LangVersion>preview</LangVersion>
     </PropertyGroup>
-
+    
     <ItemGroup>
         <PackageReference Include="dotAPNS.AspNetCore" Version="2.2.2"/>
         <PackageReference Include="Google.Apis.Oauth2.v2" Version="1.57.0.1869"/>
